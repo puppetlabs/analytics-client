@@ -65,7 +65,8 @@
   "Runs a given command against the server defined in
   the given config. It does this by first retrieving
   the entrypoint to determine the command's URL. It
-  then sends a POST to the "
+  then sends a POST to the endpoint specified for
+  the 'id' of that command."
   [config :- AnalyticsConfig
    command-name :- schema/Str
    payload :- {schema/Any schema/Any}]
