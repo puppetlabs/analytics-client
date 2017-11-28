@@ -51,7 +51,7 @@ A valid call to this function might look like this:
       analytics {:fields {:puppetserver.metric1 "value"
                           :puppetserver.metric2 1337
                           :puppetserver.metric3 ["123" "456"]
-                          :puppetserver.metric4 {:something "extra"}}}
+                          :puppetserver.metric4 {:something "extra"}}}]
   (analytics-client/store-snapshot config analytics))
 ```
 
