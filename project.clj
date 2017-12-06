@@ -24,8 +24,8 @@
                    :inherit [:managed-dependencies]}
   :plugins [[lein-parent "0.3.1"]]
 
-  :repositories [["releases" "https://artifactory.delivery.puppetlabs.net/artifactory/list/clojure-releases__local/"]
-                 ["snapshots"  "https://artifactory.delivery.puppetlabs.net/artifactory/list/clojure-snapshots__local/"]]
+  :repositories [["releases" "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-releases__local/"]
+                 ["snapshots"  "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-snapshots__local/"]]
 
-  :deploy-repositories [["releases" ~(deploy-info "https://artifactory.delivery.puppetlabs.net/artifactory/list/clojure-releases__local/")]
-                        ["snapshots" ~(deploy-info "https://artifactory.delivery.puppetlabs.net/artifactory/list/clojure-snapshots__local/")]])
+  :deploy-repositories [["releases" ~(deploy-info "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-releases__local/")]
+                        ["snapshots" ~(deploy-info "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-snapshots__local/")]])
