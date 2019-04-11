@@ -112,11 +112,13 @@
             url (add-analytics-service app "/analytics/v1/api" promise)
             config {:analytics {:url url
                                 :ssl-opts ssl-opts}}
-            analytics {:fields {:abc.def.ghi 123}}
+            analytics {:fields {:abc.def.ghi 123
+                                :foo [{"bar" "baz"}]}}
             result (core/store-snapshot config analytics)
             params (check-promise promise result)]
         (is (= (get result "status") "success"))
-        (is (= params {"fields" {"abc.def.ghi" 123}}))))
+        (is (= params {"fields" {"abc.def.ghi" 123
+                                 "foo" [{"bar" "baz"}]}}))))
 
    (testing "Fails when provided an incorrect URL"
      (with-test-logging

@@ -20,10 +20,16 @@
 (def ScalarValue
   (schema/cond-pre schema/Str schema/Num schema/Bool))
 
+(def MapValue
+  {schema/Str ScalarValue})
+
+(def ListValue
+  [(schema/cond-pre MapValue ScalarValue)])
+
 (def FieldValue
   (schema/cond-pre
-   [ScalarValue]  ; Should all be the same but not easy in schema
-   {schema/Keyword ScalarValue}
+   ListValue
+   MapValue
    ScalarValue))
 
 (def Metadata
