@@ -5,7 +5,7 @@
    :password :env/nexus_jenkins_password
    :sign-releases false})
 
-(defproject puppetlabs/analytics-client "0.1.1"
+(defproject puppetlabs/analytics-client "0.1.2-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
