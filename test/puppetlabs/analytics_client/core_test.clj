@@ -113,7 +113,7 @@
             config {:analytics {:url url
                                 :ssl-opts ssl-opts}}
             analytics {:fields {:abc.def.ghi 123
-                                :foo [{"bar" "baz"}]}}
+                                :foo [{:bar "baz"}]}}
             result (core/store-snapshot config analytics)
             params (check-promise promise result)]
         (is (= (get result "status") "success"))

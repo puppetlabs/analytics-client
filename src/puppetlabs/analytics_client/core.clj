@@ -21,7 +21,7 @@
   (schema/cond-pre schema/Str schema/Num schema/Bool))
 
 (def MapValue
-  {schema/Str ScalarValue})
+  {schema/Keyword ScalarValue})
 
 (def ListValue
   [(schema/cond-pre MapValue ScalarValue)])
