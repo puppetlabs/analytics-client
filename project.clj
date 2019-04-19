@@ -1,8 +1,8 @@
 (defn deploy-info
   [url]
   {:url url
-   :username :env/nexus_jenkins_username
-   :password :env/nexus_jenkins_password
+   :username :env/clojars_jenkins_username
+   :password :env/clojars_jenkins_password
    :sign-releases false})
 
 (defproject puppetlabs/analytics-client "1.0.1-SNAPSHOT"
@@ -24,8 +24,5 @@
                    :inherit [:managed-dependencies]}
   :plugins [[lein-parent "0.3.1"]]
 
-  :repositories [["releases" "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-releases__local/"]
-                 ["snapshots"  "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-snapshots__local/"]]
-
-  :deploy-repositories [["releases" ~(deploy-info "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-releases__local/")]
-                        ["snapshots" ~(deploy-info "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-snapshots__local/")]])
+  :deploy-repositories [["releases" ~(deploy-info "https://clojars.org/repo")]
+                        ["snapshots" "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-snapshots__local/"]])
