@@ -10,19 +10,36 @@
   :url "https://github.com/puppetlabs/analytics-client"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.8.0"]
+  :dependencies [[org.clojure/clojure]
                  [prismatic/schema]
                  [puppetlabs/http-client]
-                 [cheshire "5.5.0"]]
-  :profiles {:dev {:source-paths ["dev"]
-                   :dependencies [[puppetlabs/trapperkeeper nil :classifier "test" :scope "test"]
-                                  [puppetlabs/trapperkeeper nil]
-                                  [puppetlabs/kitchensink nil :classifier "test" :scope "test"]
-                                  [puppetlabs/trapperkeeper-webserver-jetty9]
-                                  [ring-mock "0.1.5"]]} }
-  :parent-project {:coords [puppetlabs/clj-parent "0.8.0"]
+                 [cheshire]]
+  :profiles {:defaults {:source-paths ["dev"]
+                        :dependencies [[puppetlabs/trapperkeeper :classifier "test" :scope "test"]
+                                       [puppetlabs/trapperkeeper]
+                                       [puppetlabs/kitchensink :classifier "test" :scope "test"]
+                                       [puppetlabs/trapperkeeper-webserver-jetty9]
+                                       [ring-mock "0.1.5"]]}
+             :dev [:defaults {:dependencies [[org.bouncycastle/bcpkix-jdk15on]]}]
+             :fips [:defaults {:dependencies [[org.bouncycastle/bctls-fips]
+                                              [org.bouncycastle/bcpkix-fips]
+                                              [org.bouncycastle/bc-fips]]
+                               :jvm-opts ~(let [version (System/getProperty "java.version")
+                                                [major minor _] (clojure.string/split version #"\.")
+                                                unsupported-ex (ex-info "Unsupported major Java version. Expects 8 or 11."
+                                                                 {:major major
+                                                                  :minor minor})]
+                                            (condp = (java.lang.Integer/parseInt major)
+                                              1 (if (= 8 (java.lang.Integer/parseInt minor))
+                                                  ["-Djava.security.properties==./dev-resources/java.security.jdk8-fips"]
+                                                  (throw unsupported-ex))
+                                              11 ["-Djava.security.properties==./dev-resources/java.security.jdk11-fips"]
+                                              (throw unsupported-ex)))}]}
+  :parent-project {:coords [puppetlabs/clj-parent "4.2.4"]
                    :inherit [:managed-dependencies]}
-  :plugins [[lein-parent "0.3.1"]]
+  :plugins [[lein-parent "0.3.7"]]
 
+  :repositories [["releases" "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-releases__local/"]
+                 ["snapshots" "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-snapshots__local/"]]
   :deploy-repositories [["releases" ~(deploy-info "https://clojars.org/repo")]
                         ["snapshots" "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-snapshots__local/"]])
