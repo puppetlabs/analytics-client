@@ -1,8 +1,11 @@
 language: clojure
-lein: 2.7.1
+lein: 2.9.1
 jdk:
 - oraclejdk8
-script: lein test :all
+env:
+  - LEIN_ADDITIONAL_ARGS=''
+  - LEIN_ADDITIONAL_ARGS='with-profile fips'
+script: lein $LEIN_ADDITIONAL_ARGS test :all
 notifications:
   email: false
   hipchat:
