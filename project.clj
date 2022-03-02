@@ -5,7 +5,7 @@
    :password :env/clojars_jenkins_password
    :sign-releases false})
 
-(defproject puppetlabs/analytics-client "1.1.0"
+(defproject puppetlabs/analytics-client "1.1.1-SNAPSHOT"
   :description "A library for submitting metrics to the trapperkeeper analytics service."
   :url "https://github.com/puppetlabs/analytics-client"
   :license {:name "Eclipse Public License"
