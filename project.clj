@@ -5,7 +5,7 @@
    :password :env/clojars_jenkins_password
    :sign-releases false})
 
-(defproject puppetlabs/analytics-client "1.0.3-SNAPSHOT"
+(defproject puppetlabs/analytics-client "1.1.0-SNAPSHOT"
   :description "A library for submitting metrics to the trapperkeeper analytics service."
   :url "https://github.com/puppetlabs/analytics-client"
   :license {:name "Eclipse Public License"
@@ -35,9 +35,9 @@
                                                   (throw unsupported-ex))
                                               11 ["-Djava.security.properties==./dev-resources/java.security.jdk11-fips"]
                                               (throw unsupported-ex)))}]}
-  :parent-project {:coords [puppetlabs/clj-parent "4.2.4"]
+  :parent-project {:coords [puppetlabs/clj-parent "4.9.4"]
                    :inherit [:managed-dependencies]}
-  :plugins [[lein-parent "0.3.7"]]
+  :plugins [[lein-parent "0.3.8"]]
 
   :repositories [["releases" "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-releases__local/"]
                  ["snapshots" "https://artifactory.delivery.puppetlabs.net/artifactory/clojure-snapshots__local/"]]
